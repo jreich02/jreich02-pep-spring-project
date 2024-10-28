@@ -6,9 +6,6 @@ import com.example.entity.Account;
 import com.example.repository.AccountRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Optional;
-
 @Service
 public class AccountService {
     private AccountRepository accountRepository;
@@ -18,11 +15,7 @@ public class AccountService {
         this.accountRepository = accountRepository;
     }
 
-    public List<Account> getAllAccounts(){
-        return accountRepository.findAllAccounts();
-    }
-
-    public Account getAccountByAccountId(int id){
+    public Account findAccountByAccountId(int id){
         return accountRepository.findAccountByAccountId(id);
     }
 
@@ -30,8 +23,8 @@ public class AccountService {
         return accountRepository.findAccountByUsername(username);
     }
 
-    public Account getAccountByUsernameAndPassword(String username, String password){
-        return accountRepository.findAccountByUsernameAndPassword(username, password);
+    public Account getAccountLogin(Account account){
+        return accountRepository.findAccountByUsernameAndPassword(account.getUsername(), account.getPassword());
     }
     public Account addAccount(Account account){
 
